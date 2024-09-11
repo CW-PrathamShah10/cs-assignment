@@ -4,6 +4,7 @@ namespace cswebapi.DAL
 {
     public interface IStockDAL
     {
-        IEnumerable<Stock> GetStocks(Filters filters);
+        Task<IEnumerable<Stock>> GetStocks(Filters filters);
+        Task<int> InsertRecordAsync();
     }
 }

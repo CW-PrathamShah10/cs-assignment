@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using cswebapi.BAL;
-using cswebapi.DTOs;
+using cswebapi.DTO;
 
 namespace cswebapi.Controllers
 {
@@ -16,12 +16,13 @@ namespace cswebapi.Controllers
         }
 
         [HttpGet("search")]
-        public IActionResult GetStocks([FromQuery] StockSearchRequestDTO request)
+        public async Task<IActionResult> GetStocks([FromQuery] StockSearchRequestDTO request)
         {
             // [FromQuery]: This tells the framework to bind query string 
             // parameters from the URL to the `StockSearchRequestDTO`
             // object.
-            if (!ModelState.IsValid) {
+            if (!ModelState.IsValid)
+            {
                 // The main purposes of ModelState are:
                 // Model Binding: It captures the result of binding 
                 // incoming request data to your models or parameters.
@@ -32,7 +33,7 @@ namespace cswebapi.Controllers
             }
             try
             {
-                var stocks = _stockBAL.GetStocks(request);
+                var stocks = await _stockBAL.GetStocks(request);
                 return Ok(stocks);
             }
             catch (Exception ex)
@@ -40,5 +41,11 @@ namespace cswebapi.Controllers
                 return StatusCode(500, "Internal server error: " + ex.Message);
             }
         }
+        [HttpPost("insert")]
+        public Task<int> InsertRecordAsync()
+        {
+            return _stockBAL.InsertRecordAsync();
+        }
     }
+
 }

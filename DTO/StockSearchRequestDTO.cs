@@ -1,9 +1,9 @@
-namespace Cswebapi.DTO
+namespace cswebapi.DTO
 {
     public class StockSearchRequestDTO
     {
         public int? MinBudget { get; set; }
         public int? MaxBudget { get; set; }
-        public List<string> FuelTypes { get; set; } // E.g. ["Petrol", "Diesel"]
+        public List<int> FuelTypes { get; set; } // E.g. [1, 2, 3..6]
     }
 }

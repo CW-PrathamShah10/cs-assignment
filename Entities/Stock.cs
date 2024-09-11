@@ -7,5 +7,7 @@ namespace cswebapi.Entities
         public int MakeYear { get; set; }
         public int Price { get; set; }
         public int Kilometers { get; set; }
+        public int Id { get; set; }
+        public FuelType Fuel { get; set; }
     }
 }

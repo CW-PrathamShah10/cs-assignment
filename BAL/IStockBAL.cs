@@ -1,9 +1,11 @@
-using cswebapi.DTOs;
+using cswebapi.DTO;
 
 namespace cswebapi.BAL
 {
     public interface IStockBAL
     {
-        IEnumerable<StockDTO> GetStocks(StockSearchRequestDTO request);
+        Task<IEnumerable<StockDTO>> GetStocks(StockSearchRequestDTO request);
+        public Task<int> InsertRecordAsync();
+
     }
 }
